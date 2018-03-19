@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>get lat and lng of schools</title>
+	<link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.2&key=4318f2d20750a49d33dada34d75774a8"></script>
+    <style type="text/css">
+        #panel {
+            position: absolute;
+            background-color: white;
+            max-height: 90%;
+            overflow-y: auto;
+            top: 10px;
+            right: 10px;
+            width: 280px;
+        }
+    </style>
+</head>
+<body>
+<div id="mapContainer"></div>
+<div id="panel">
+<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+<script type="text/javascript">
+	var map = new AMap.Map('mapContainer', {
+        resizeEnable: true
+    });
+    AMap.service(['AMap.PlaceSearch'], function() {
+        var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+            pageSize: 5,
+            pageIndex: 1,
+            city: '广州', //城市
+            type: '小学',
+            map: map//,
+            //panel: "panel"
+        });
+        //关键字查询
+        placeSearch.search('越秀区小北路小学', function(status, result) {
+        	console.log(result);
+        });
+    });
+</script>
+</body>
+</html>
